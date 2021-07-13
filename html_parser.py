@@ -36,7 +36,17 @@ class HtmlParser(object):
             temp_list.append(wind)
             final_list.append(temp_list)
 
-        #data = soup.find(class_='curve_livezs')
+        data = soup.find(class_='curve_livezs')
         #print(data)
+        time = data.find(class_='time')
+        em = time.find_all('em')
+        time_list = []
+        for i in em:
+            time_list.append(i.string)
 
-        return final_list
+        time_tmp = data.find(class_='tem')
+        em = time_tmp.find_all('em')
+        timetmp_list = []
+        for i in em:
+            timetmp_list.append(i.string[0:2])
+        return final_list,time_list,timetmp_list

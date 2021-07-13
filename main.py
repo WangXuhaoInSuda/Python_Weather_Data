@@ -13,15 +13,14 @@ class SpiderMain(object):
 
     def craw(self,root_url):
         print(f"craw:{root_url}")
-        (html1,html2) = self.downloader.download(root_url)
+        html = self.downloader.download(root_url)
 
         with open('html1.txt', 'w+',encoding='utf-8') as f:
-            f.write(html1)
-        with open('html2.txt', 'w+',encoding='utf-8') as f:
-            f.write(html2)
+            f.write(html)
+
         print('数据抓取完毕！')
-        data_list = self.parser.parse(html1)
-        self.outputer.outputer(data_list)
+        (data_list,time_list,timetmp_list) = self.parser.parse(html)
+        self.outputer.outputer(data_list,time_list,timetmp_list)
 
 
 if __name__ == "__main__":

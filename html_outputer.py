@@ -5,7 +5,7 @@ from collections import Counter
 from pyecharts.charts import Pie
 class HtmlOutputer(object):
 
-    def outputer(self,data_list):
+    def outputer(self,data_list,time_list,timetmp_list):
 
         x = []
         high_temp = []
@@ -24,13 +24,20 @@ class HtmlOutputer(object):
 
         weather_count = Counter(weather)
 
-        line = (
+        line1 = (
             Line()
             .add_xaxis(x)
             .add_yaxis("最高气温",high_temp,is_smooth=True)
             .add_yaxis("最低气温",low_temp,is_smooth=True)
             .set_global_opts(title_opts=opts.TitleOpts(title='哈尔滨7日气温'))
             )
+
+        line2 = (
+            Line()
+                .add_xaxis(time_list)
+                .add_yaxis("实时气温", timetmp_list, is_smooth=True)
+                .set_global_opts(title_opts=opts.TitleOpts(title='分时段预报'))
+        )
 
         pie = Pie(init_opts=opts.InitOpts(width="600px",height="400px"))
         pie.set_global_opts(
@@ -47,5 +54,5 @@ class HtmlOutputer(object):
         pie.add('类别',data_pair,rosetype='radius',radius=['30%','55%'])
 
         page=Page(layout=Page.DraggablePageLayout,page_title="气温数据展示大屏")
-        page.add(line,pie)
+        page.add(line1,line2,pie)
         page.render("./气温数据展示大屏.html")
