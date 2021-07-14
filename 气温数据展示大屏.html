@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>气温数据展示大屏</title>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/themes/chalk.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/jquery.min.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/ResizeSensor.js"></script>
+
+            <link rel="stylesheet"  href="https://assets.pyecharts.org/assets/jquery-ui.css">
+
+</head>
+<body>
+    <style>.box {  }; </style>
+        <button onclick="downloadCfg()">Save Config</button>
+    <div class="box">
+                <div id="line1" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_line1 = echarts.init(
+            document.getElementById('line1'), 'chalk', {renderer: 'canvas'});
+        var option_line1 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "series": [
+        {
+            "type": "line",
+            "name": "\u6700\u9ad8\u6c14\u6e29",
+            "connectNulls": false,
+            "symbolSize": 4,
+            "showSymbol": true,
+            "smooth": true,
+            "clip": true,
+            "step": false,
+            "data": [
+                [
+                    "13\u65e5\uff08\u4eca\u5929\uff09",
+                    "33"
+                ],
+                [
+                    "14\u65e5\uff08\u660e\u5929\uff09",
+                    "31"
+                ],
+                [
+                    "15\u65e5\uff08\u540e\u5929\uff09",
+                    "31"
+                ],
+                [
+                    "16\u65e5\uff08\u5468\u4e94\uff09",
+                    "31"
+                ],
+                [
+                    "17\u65e5\uff08\u5468\u516d\uff09",
+                    "30"
+                ],
+                [
+                    "18\u65e5\uff08\u5468\u65e5\uff09",
+                    "30"
+                ],
+                [
+                    "19\u65e5\uff08\u5468\u4e00\uff09",
+                    "30"
+                ]
+            ],
+            "hoverAnimation": true,
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "lineStyle": {
+                "show": true,
+                "width": 1,
+                "opacity": 1,
+                "curveness": 0,
+                "type": "solid"
+            },
+            "areaStyle": {
+                "opacity": 0
+            },
+            "zlevel": 0,
+            "z": 0
+        },
+        {
+            "type": "line",
+            "name": "\u6700\u4f4e\u6c14\u6e29",
+            "connectNulls": false,
+            "symbolSize": 4,
+            "showSymbol": true,
+            "smooth": true,
+            "clip": true,
+            "step": false,
+            "data": [
+                [
+                    "13\u65e5\uff08\u4eca\u5929\uff09",
+                    "25"
+                ],
+                [
+                    "14\u65e5\uff08\u660e\u5929\uff09",
+                    "25"
+                ],
+                [
+                    "15\u65e5\uff08\u540e\u5929\uff09",
+                    "25"
+                ],
+                [
+                    "16\u65e5\uff08\u5468\u4e94\uff09",
+                    "24"
+                ],
+                [
+                    "17\u65e5\uff08\u5468\u516d\uff09",
+                    "23"
+                ],
+                [
+                    "18\u65e5\uff08\u5468\u65e5\uff09",
+                    "24"
+                ],
+                [
+                    "19\u65e5\uff08\u5468\u4e00\uff09",
+                    "24"
+                ]
+            ],
+            "hoverAnimation": true,
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "lineStyle": {
+                "show": true,
+                "width": 1,
+                "opacity": 1,
+                "curveness": 0,
+                "type": "solid"
+            },
+            "areaStyle": {
+                "opacity": 0
+            },
+            "zlevel": 0,
+            "z": 0
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u6700\u9ad8\u6c14\u6e29",
+                "\u6700\u4f4e\u6c14\u6e29"
+            ],
+            "selected": {
+                "\u6700\u9ad8\u6c14\u6e29": true,
+                "\u6700\u4f4e\u6c14\u6e29": true
+            },
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "xAxis": [
+        {
+            "show": true,
+            "scale": false,
+            "nameLocation": "end",
+            "nameGap": 15,
+            "gridIndex": 0,
+            "inverse": false,
+            "offset": 0,
+            "splitNumber": 5,
+            "minInterval": 0,
+            "splitLine": {
+                "show": false,
+                "lineStyle": {
+                    "show": true,
+                    "width": 1,
+                    "opacity": 1,
+                    "curveness": 0,
+                    "type": "solid"
+                }
+            },
+            "data": [
+                "13\u65e5\uff08\u4eca\u5929\uff09",
+                "14\u65e5\uff08\u660e\u5929\uff09",
+                "15\u65e5\uff08\u540e\u5929\uff09",
+                "16\u65e5\uff08\u5468\u4e94\uff09",
+                "17\u65e5\uff08\u5468\u516d\uff09",
+                "18\u65e5\uff08\u5468\u65e5\uff09",
+                "19\u65e5\uff08\u5468\u4e00\uff09"
+            ]
+        }
+    ],
+    "yAxis": [
+        {
+            "show": true,
+            "scale": false,
+            "nameLocation": "end",
+            "nameGap": 15,
+            "gridIndex": 0,
+            "inverse": false,
+            "offset": 0,
+            "splitNumber": 5,
+            "minInterval": 0,
+            "splitLine": {
+                "show": false,
+                "lineStyle": {
+                    "show": true,
+                    "width": 1,
+                    "opacity": 1,
+                    "curveness": 0,
+                    "type": "solid"
+                }
+            }
+        }
+    ],
+    "title": [
+        {
+            "text": "\u54c8\u5c14\u6ee87\u65e5\u6c14\u6e29",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ]
+};
+        chart_line1.setOption(option_line1);
+    </script>
+<br/>                <div id="pie" class="chart-container" style="width:600px; height:400px;"></div>
+    <script>
+        var chart_pie = echarts.init(
+            document.getElementById('pie'), 'chalk', {renderer: 'canvas'});
+        var option_pie = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "series": [
+        {
+            "type": "pie",
+            "name": "\u7c7b\u522b",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "\u591a\u4e91",
+                    "value": 2
+                },
+                {
+                    "name": "\u96f7\u9635\u96e8",
+                    "value": 3
+                },
+                {
+                    "name": "\u96f7\u9635\u96e8\u8f6c\u591a\u4e91",
+                    "value": 1
+                },
+                {
+                    "name": "\u591a\u4e91\u8f6c\u6674",
+                    "value": 1
+                }
+            ],
+            "radius": [
+                "30%",
+                "55%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "roseType": "radius",
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u591a\u4e91",
+                "\u96f7\u9635\u96e8",
+                "\u96f7\u9635\u96e8\u8f6c\u591a\u4e91",
+                "\u591a\u4e91\u8f6c\u6674"
+            ],
+            "selected": {},
+            "type": "scroll",
+            "show": true,
+            "left": "left",
+            "top": "20%",
+            "orient": "vertical",
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": {
+        "text": "\u54c8\u5c14\u6ee8\u4e03\u5929\u6700\u591a\u7684\u5929\u6c14"
+    }
+};
+        chart_pie.setOption(option_pie);
+    </script>
+<br/>                        <style>
+            .fl-table {
+                margin: 20px;
+                border-radius: 5px;
+                font-size: 12px;
+                border: none;
+                border-collapse: collapse;
+                max-width: 100%;
+                white-space: nowrap;
+                word-break: keep-all;
+            }
+
+            .fl-table th {
+                text-align: left;
+                font-size: 20px;
+            }
+
+            .fl-table tr {
+                display: table-row;
+                vertical-align: inherit;
+                border-color: inherit;
+            }
+
+            .fl-table tr:hover td {
+                background: #00d1b2;
+                color: #F8F8F8;
+            }
+
+            .fl-table td, .fl-table th {
+                border-style: none;
+                border-top: 1px solid #dbdbdb;
+                border-left: 1px solid #dbdbdb;
+                border-bottom: 3px solid #dbdbdb;
+                border-right: 1px solid #dbdbdb;
+                padding: .5em .55em;
+                font-size: 15px;
+            }
+
+            .fl-table td {
+                border-style: none;
+                font-size: 15px;
+                vertical-align: center;
+                border-bottom: 1px solid #dbdbdb;
+                border-left: 1px solid #dbdbdb;
+                border-right: 1px solid #dbdbdb;
+                height: 30px;
+            }
+
+            .fl-table tr:nth-child(even) {
+                background: #F8F8F8;
+            }
+        </style>
+        <div id="table" class="chart-container" style="">
+            <p class="title" > </p>
+            <p class="subtitle" > </p>
+            <table class="fl-table">
+    <thead>
+        <tr>
+            <th>13日（今天）</th>
+            <th>14日（明天）</th>
+            <th>15日（后天）</th>
+            <th>16日（周五）</th>
+            <th>17日（周六）</th>
+            <th>18日（周日）</th>
+            <th>19日（周一）</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>多云</td>
+            <td>雷阵雨</td>
+            <td>雷阵雨</td>
+            <td>雷阵雨</td>
+            <td>雷阵雨转多云</td>
+            <td>多云</td>
+            <td>多云转晴</td>
+        </tr>
+        <tr>
+            <td>4-5级转3-4级</td>
+            <td>5-6级转3-4级</td>
+            <td>4-5级转3-4级</td>
+            <td>4-5级转&lt;3级</td>
+            <td>3-4级转&lt;3级</td>
+            <td>3-4级转&lt;3级</td>
+            <td>3-4级转&lt;3级</td>
+        </tr>
+    </tbody>
+</table>
+        </div>
+
+<br/>                <div id="line2" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_line2 = echarts.init(
+            document.getElementById('line2'), 'chalk', {renderer: 'canvas'});
+        var option_line2 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "series": [
+        {
+            "type": "line",
+            "name": "\u5b9e\u65f6\u6c14\u6e29",
+            "connectNulls": false,
+            "symbolSize": 4,
+            "showSymbol": true,
+            "smooth": true,
+            "clip": true,
+            "step": false,
+            "data": [
+                [
+                    "08\u65f6",
+                    "28"
+                ],
+                [
+                    "11\u65f6",
+                    "30"
+                ],
+                [
+                    "14\u65f6",
+                    "32"
+                ],
+                [
+                    "17\u65f6",
+                    "32"
+                ],
+                [
+                    "20\u65f6",
+                    "29"
+                ],
+                [
+                    "23\u65f6",
+                    "28"
+                ],
+                [
+                    "02\u65f6",
+                    "26"
+                ],
+                [
+                    "05\u65f6",
+                    "25"
+                ]
+            ],
+            "hoverAnimation": true,
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "lineStyle": {
+                "show": true,
+                "width": 1,
+                "opacity": 1,
+                "curveness": 0,
+                "type": "solid"
+            },
+            "areaStyle": {
+                "opacity": 0
+            },
+            "zlevel": 0,
+            "z": 0
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u5b9e\u65f6\u6c14\u6e29"
+            ],
+            "selected": {
+                "\u5b9e\u65f6\u6c14\u6e29": true
+            },
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "xAxis": [
+        {
+            "show": true,
+            "scale": false,
+            "nameLocation": "end",
+            "nameGap": 15,
+            "gridIndex": 0,
+            "inverse": false,
+            "offset": 0,
+            "splitNumber": 5,
+            "minInterval": 0,
+            "splitLine": {
+                "show": false,
+                "lineStyle": {
+                    "show": true,
+                    "width": 1,
+                    "opacity": 1,
+                    "curveness": 0,
+                    "type": "solid"
+                }
+            },
+            "data": [
+                "08\u65f6",
+                "11\u65f6",
+                "14\u65f6",
+                "17\u65f6",
+                "20\u65f6",
+                "23\u65f6",
+                "02\u65f6",
+                "05\u65f6"
+            ]
+        }
+    ],
+    "yAxis": [
+        {
+            "show": true,
+            "scale": false,
+            "nameLocation": "end",
+            "nameGap": 15,
+            "gridIndex": 0,
+            "inverse": false,
+            "offset": 0,
+            "splitNumber": 5,
+            "minInterval": 0,
+            "splitLine": {
+                "show": false,
+                "lineStyle": {
+                    "show": true,
+                    "width": 1,
+                    "opacity": 1,
+                    "curveness": 0,
+                    "type": "solid"
+                }
+            }
+        }
+    ],
+    "title": [
+        {
+            "text": "\u5206\u65f6\u6bb5\u9884\u62a5",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ]
+};
+        chart_line2.setOption(option_line2);
+    </script>
+<br/>    </div>
+    <script>
+            $('#line1').resizable().draggable().css('border-style', 'dashed').css('border-width', '1px');$("#line1>div:nth-child(1)").width("100%").height("100%");
+            new ResizeSensor(jQuery('#line1'), function() { chart_line1.resize()});
+            $('#pie').resizable().draggable().css('border-style', 'dashed').css('border-width', '1px');$("#pie>div:nth-child(1)").width("100%").height("100%");
+            new ResizeSensor(jQuery('#pie'), function() { chart_pie.resize()});
+            $('#table').resizable().draggable().css('border-style', 'dashed').css('border-width', '1px');$("#table>div:nth-child(1)").width("100%").height("100%");
+            $('#line2').resizable().draggable().css('border-style', 'dashed').css('border-width', '1px');$("#line2>div:nth-child(1)").width("100%").height("100%");
+            new ResizeSensor(jQuery('#line2'), function() { chart_line2.resize()});
+            var charts_id = ['line1','pie','table','line2'];
+function downloadCfg () {
+    const fileName = 'chart_config.json'
+    let downLink = document.createElement('a')
+    downLink.download = fileName
+
+    let result = []
+    for(let i=0; i<charts_id.length; i++) {
+        chart = $('#'+charts_id[i])
+        result.push({
+            cid: charts_id[i],
+            width: chart.css("width"),
+            height: chart.css("height"),
+            top: chart.offset().top + "px",
+            left: chart.offset().left + "px"
+        })
+    }
+
+    let blob = new Blob([JSON.stringify(result)])
+    downLink.href = URL.createObjectURL(blob)
+    document.body.appendChild(downLink)
+    downLink.click()
+    document.body.removeChild(downLink)
+}
+    </script>
+</body>
+</html>
